@@ -149,3 +149,10 @@ border: 1px solid grey;
 font-size: 14px;
 border-radius: 10px;
 }
+
+.instruction {
+  text-align: center;
+  font: status-bar;
+  margin: 30px;
+  color: #6f6f6f;
+}
