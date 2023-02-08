@@ -1,72 +1,151 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400&display=swap');
-
-* {
-  box-sizing: border-box;
-}
-
-body {
-  background-color: #f5f5f5;
-  color: #444;
-  font-family: 'Poppins', sans-serif;
+/* .container {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.header {
+  display: flex;
   justify-content: center;
-  height: 100vh;
-  margin: 0;
+  margin-bottom: 20px;
 }
 
-h1 {
-  color: rgb(179, 131, 226);
-  font-size: 10rem;
-  text-align: center;
-  opacity: 0.4;
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
-form {
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  max-width: 100%;
-  width: 400px;
+.card {
+  width: 300px;
+  height: 200px;
+  border: 1px solid #ccc;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
 }
 
-.input {
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.card-list {
+  height: calc(100% - 50px);
+  overflow-y: scroll;
+  padding: 10px;
+}
+
+.list-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.list-item.strike-through {
+  text-decoration: line-through;
+} */
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  background-color: #f2f2f2;
+}
+
+.title-input {
+  width: 300px;
+  height: 40px;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.create-card-button {
+  width: 100px;
+  height: 40px;
+  background-color: #4CAF50;
+  color: white;
   border: none;
-  color: #444;
-  font-size: 2rem;
-  padding: 1rem 2rem;
-  display: block;
-  width: 100%;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
 }
 
-.input::placeholder {
-  color: #d5d5d5;
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
 }
 
-.input:focus {
-  outline-color: rgb(179, 131, 226);
+.card {
+  width: 300px;
+  background-color: #f2f2f2;
+  margin: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
 }
 
-.todos {
-  background-color: #fff;
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.card-header div {
+  margin-left: 10px;
+}
+
+.delete-card {
+  background-color: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.card-list {
+  list-style: none;
   padding: 0;
   margin: 0;
-  list-style-type: none;
 }
 
-.todos li {
-  border-top: 1px solid #e5e5e5;
-  cursor: pointer;
-  font-size: 1.5rem;
-  padding: 1rem 2rem;
+.list-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
 }
 
-.todos li.completed {
-  color: #b6b6b6;
+.list-item div {
+  margin-left: 10px;
+}
+
+.date {
+  margin-right: 10px;
+  font-size: 12px;
+  color: #777;
+}
+
+.strike-through div {
   text-decoration: line-through;
 }
 
-small {
-  color: #b5b5b5;
-  margin-top: 3rem;
-  text-align: center;
+.list-input {
+width: -webkit-fill-available;
+padding: 10px;
+margin: 10px;
+border: 1px solid grey;
+font-size: 14px;
+border-radius: 10px;
 }

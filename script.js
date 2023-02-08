@@ -1,65 +1,78 @@
-const form = document.getElementById('form')
-const input = document.getElementById('input')
-const todosUL = document.getElementById('todos')
+const titleInput = document.getElementById('title-input');
+const createCardButton = document.getElementById('create-card');
+const cardContainer = document.querySelector('.card-container');
 
-const todos = JSON.parse(localStorage.getItem('todos'))
+createCardButton.addEventListener('click', function () {
+  createCard(titleInput.value);
+  titleInput.value = '';
+});
 
-if(todos) {
-    todos.forEach(todo => addTodo(todo))
+titleInput.addEventListener('keydown', function (event) {
+  if (event.key === 'Enter') {
+    createCard(titleInput.value);
+    titleInput.value = '';
+  }
+});
+
+function createCard(title) {
+  if (!title) return;
+
+  const card = document.createElement('div');
+  card.classList.add('card');
+
+  const cardHeader = document.createElement('div');
+  cardHeader.classList.add('card-header');
+  cardHeader.innerHTML = `
+    <div>${title}</div>
+    <button class="delete-card">&times;</button>
+  `;
+  card.appendChild(cardHeader);
+
+  const listInput = document.createElement('input');
+  listInput.setAttribute('type', 'text');
+  listInput.setAttribute('placeholder', 'Enter item');
+  listInput.classList.add('list-input');
+  card.appendChild(listInput);
+
+  const cardList = document.createElement('ul');
+  cardList.classList.add('card-list');
+  card.appendChild(cardList);
+
+  listInput.addEventListener('keydown', function (event) {
+    if (event.key === 'Enter') {
+      createListItem(cardList, listInput.value);
+      listInput.value = '';
+    }
+  });
+
+  cardHeader.querySelector('.delete-card').addEventListener('click', function () {
+    card.remove();
+  });
+
+  cardContainer.appendChild(card);
 }
 
-form.addEventListener('submit', (e) => {
-    e.preventDefault()
+function createListItem(cardList, text) {
+  if (!text) return;
 
-    addTodo()
-})
+  const listItem = document.createElement('li');
+  listItem.classList.add('list-item');
+  listItem.innerHTML = `
+    <div>${text}</div>
+    <div class="date">${new Date().toLocaleDateString()}</div>
+  `;
+  cardList.appendChild(listItem);
 
-function addTodo(todo) {
-    let todoText = input.value
+  listItem.addEventListener('click', function () {
+    listItem.classList.toggle('strike-through');
+  });
 
-    if(todo) {
-        todoText = todo.text
-    }
-
-    if(todoText) {
-        const todoEl = document.createElement('li')
-        if(todo && todo.completed) {
-            todoEl.classList.add('completed')
-        }
-
-        todoEl.innerText = todoText
-
-        todoEl.addEventListener('click', () => {
-            todoEl.classList.toggle('completed')
-            updateLS()
-        }) 
-
-        todoEl.addEventListener('contextmenu', (e) => {
-            e.preventDefault()
-
-            todoEl.remove()
-            updateLS()
-        }) 
-
-        todosUL.appendChild(todoEl)
-
-        input.value = ''
-
-        updateLS()
-    }
+  listItem.addEventListener('contextmenu', function (event) {
+    event.preventDefault();
+    listItem.remove();
+  });
 }
 
-function updateLS() {
-    todosEl = document.querySelectorAll('li')
-
-    const todos = []
-
-    todosEl.forEach(todoEl => {
-        todos.push({
-            text: todoEl.innerText,
-            completed: todoEl.classList.contains('completed')
-        })
-    })
-
-    localStorage.setItem('todos', JSON.stringify(todos))
+function changeHeaderColor(card, color) {
+  card.querySelector('.card-header').style.backgroundColor = color;
 }
